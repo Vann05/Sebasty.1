@@ -1,0 +1,463 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+:root{
+    --red: #8a0000;
+    --darker-red: #7a0000;
+    --lred: #8a0000b0;
+    --black: #000000;
+    --brown: #ded7c4;
+    --brown1: #bdb7a7;
+    --white: #ffffff;
+    --cream: #ede9df;
+    --darker-cream: #c0baab;
+    --bgcolor: #00000066;
+    --shadow: 8px 8px 30px #8f8977;
+    --yellow: #ffbd13
+}
+
+::-webkit-scrollbar{
+   height: .5rem;
+   width: 1rem; 
+}
+::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--red);
+}
+
+body {
+    margin: 40px;
+    font-family: "Poppins" ;
+    overflow: hidden;
+    background-color: #ede9df;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Navigation Bar Section */
+.navbar .logo{
+    width: 100%;
+}
+
+.navbar{
+    height: 100%;
+    width: 25%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--red);
+    overflow: hidden;
+    padding: 20px;
+}
+.navbar a{
+    padding: 60px 10px 10px 50px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    color: var(--white);
+}
+.navbar .back{
+    padding: 50px 10px 10px 50px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    color: var(--white);
+    margin-top: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    width: 100%;
+}
+.navbar i {
+    margin-right: 20px; 
+}
+
+section{ 
+    height: 100vh;
+    margin-left: 25%;
+}
+
+/* Information Hub Section */
+.InfoHub{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    position: relative;
+}
+
+.InfoHub h2{
+    opacity: 40%;
+    font-size: 44px;
+    color: var(--red);
+    padding-top: 30px;
+}
+
+.convos{
+    position: absolute;
+    top: 120px;
+    padding: 1%;
+    display: flex;
+    width: 1000px;
+    flex-direction: row;
+}
+
+/* .convoarea, .convoarea1{
+    margin: 2%;
+    padding: 3%;
+    width: 525px;
+    height: 300px;
+    background-color: var(--red);
+    border-radius: 5%;
+} */
+
+/* .SearchBar{
+    position: absolute;
+    top: 84%;
+    border-radius: 40px;
+    padding: 11.25px;
+    margin: 7.5px;
+    display: flex;
+    align-items: center;
+    background: #bdb7a7;
+    width: 650px;
+    box-shadow: var(--shadow);
+}
+
+.SearchBar input{
+    width: 100%;
+    font: 18px "Poppins" ;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.SearchBar span{
+    font-size: 22px;
+    opacity: 60%;
+} */
+
+
+/* About Section  */
+.About{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.About h2{
+    opacity: 40%;
+    font-size: 44px;
+    color: var(--red);
+    padding-top: 30px;
+}
+
+.AboutP{
+    padding: 20px;
+    
+}
+
+.AboutP p{
+    font-size: 25px;
+    padding: 0px 30px 0px 90px;
+}
+
+/* FAQ Section */
+.FAQ{
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    position: relative;
+}
+.FAQps{
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  opacity:80%;
+  padding: 20px;
+  }
+.FAQps .img-box{
+  width: 360px;
+  height: 360px;
+}
+
+.FAQps .img-box img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qtext{
+  width: 70%;
+}
+
+.qtext .title{
+  font-size: 40px;
+  font-weight: bolder;
+  color: var(--red);
+}
+
+.faqs-text{
+  margin-top: 15px;
+  height: 400px;
+  overflow-y: auto;
+}
+
+.qtext li{
+  list-style: none;
+  cursor: pointer;
+}
+
+.qtext li .questions-list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+/* add */
+.qtext li .questions-list i{
+  font-size: 15px;
+  padding: 10px;
+}
+
+.qtext li .line{
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1)
+}
+
+.qtext li .questions-list .questions{
+  transition: all 0.3s ease;
+}
+
+.qtext li i{
+  transition: all 0.3s ease;
+}
+
+.qtext li:hover .questions-list .questions,
+.qtext li:hover i{
+  color: var(--red)
+}
+/* add */
+.qtext li.showAnswer .questions-list .questions,
+.qtext li.showAnswer i{
+  color: var(--red)
+}
+
+.qtext li p{
+  width: 90%;
+  font-size: 15px;
+  font-weight: bolder;
+  display: none;
+}
+
+.qtext li.showAnswer p{
+  display: block;
+}
+/* add */
+.faqs-text li.showAnswer .questions-list i{
+  transform: rotate(-180deg);
+}
+
+
+.tops h2{
+    text-align: center;
+    font-size: 44px;
+    opacity: 40%;
+    color:var(--red);
+    padding-top: 40px;
+}
+
+.tops form{
+    border-radius: 40px;
+    padding: 11px;
+    margin: 7.5px;
+    display: flex;
+    align-items: center;
+    background: #bdb7a7;
+    width: 650px;
+}
+
+section h2 {    
+    margin-bottom: 10px;
+}
+
+.schoolrate{
+    position: relative;
+}
+
+
+.section.SebR{
+    max-width: max-content;
+    position: absolute;
+    top: 270px;
+    right: -463px;
+}
+
+.sebBox{
+    background-color: var(--brown);
+    border-radius: 3rem;
+    padding: 1rem;
+    margin: 1.4rem;
+    width: 560px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.seb.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.btn-group1{
+    display: flex;
+    grid-gap: 8px;
+    align-items: center;
+}
+
+
+.btn-group1 .btn{
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.btn-group1 .btn.submit1{
+    background: var(--red);
+    color: var(--white);
+}
+
+.btn-group1 .btn.cancel1{
+    background-color: var(--brown1);
+    color: var(--black);
+}
+
+.rating1{
+    position: absolute;
+    display: inline-block;
+    top: 90px;
+  }
+  
+  .rating1 input {
+    display: none;
+  }
+  
+  .rating1 label {
+    float: right;
+    cursor: pointer;
+    color: #e48282;
+    transition: color 0.3s;
+  }
+  
+  .rating1 label:before {
+    content: '\2605';
+    font-size: 60px;
+  }
+  
+  .rating1 input:checked ~ label,
+  .rating1 label:hover,
+  .rating1 label:hover ~ label {
+    color: #ecd713;
+    transition: color 0.3s;
+  }
+  .chat-container {
+    width: 700px;
+    margin-left: 140px;
+    padding: 20px;
+    border: 5px solid var(--lred);
+    border-radius: 8px;
+    height: 400px; /* Set a fixed height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.chat-message-container {
+    display: flex;
+    align-items: center;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.user-message {
+    background-color: var(--lred);
+    color: white;
+    align-self: flex-end;
+}
+
+.chat-form {
+    position: absolute;
+    top: 80%;
+    border-radius: 40px;
+    padding: 11.25px;
+    margin: 40px;
+    margin-left: 75px;
+    display: flex;
+    align-items: center;
+    background: #bdb7a7;
+    width: 650px;
+    box-shadow: var(--shadow);
+}
+
+.chat-form input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-left: auto;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.chat-form input[type="submit"] {
+    width: 18%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8a0000;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+.chat-form input[type="submit"]:hover {
+    background-color: #8a0000b0;
+}
+
+.mic-container {
+    margin-left: 10px;
+}
+
+.mic-container i {
+    color: #555;
+    cursor: pointer;
+}
+
+
+i[role="buttoninput"]:active {
+  color: green;
+}

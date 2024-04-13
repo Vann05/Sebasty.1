@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="">
+    <title>Sebasty</title>
+    <!-- FONT AWESOME 
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   -->
+   <script src="https://kit.fontawesome.com/86aee6cc9c.js" crossorigin="anonymous"></script>
+   
+   <!-- CSS LINK-->
+    <!-- <link rel="stylesheet" href="SEBASTYCSS.css"> -->
+    <link rel="stylesheet"  href="{{ url_for('static', filename='dist/SEBASTYCSS.css') }}">
+   <!-- SWIPER CSS LINK -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+
+<body>
+    <header class="header">
+      <section class="flex">
+        <img class="logo1" src="{{ url_for('static', filename='pictures/LOGO.png') }}" alt="Logo">
+          <nav class="main-nav">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#courses">COURSES</a>
+            <a href="#administration">ADMINISTRATION</a>
+            <a href="#developer">DEVELOPER</a>
+           </nav>
+           <img class="logo2" src="{{ url_for('static', filename='pictures/SCHOOLLOGO.png') }}" alt="Logo">
+        </section>
+        </header>
+
+<!--HOME-->
+<!-- ADS -->
+<section class="home" id="home"></section>
+<div id="carousel-container">
+  <div id="text-container">
+    <div id="text">
+      <h3>SEBASTY <br><span>ANNOUNCEMENT: <br> {{ announcement.announcement }}</span> </h3>
+      <br>
+      <button id="startServiceBtn" onclick="location.href='/SebastyUI'">Start the service</button>
+    </div>
+  </div>
+  <div id="image-carousel">
+    {% if slides.Slide1 %}
+            <img src="data:image/jpeg;base64,{{ slides.Slide1.image }}" alt="Slide1" class="carousel-image active">
+    {% else %}
+                <p>No Slide1 picture available</p>
+    {% endif %}
+    {% if slides.Slide2 %}
+            <img src="data:image/jpeg;base64,{{ slides.Slide2.image }}" alt="Slide2" class="carousel-image active">
+    {% else %}
+                <p>No Slide2 picture available</p>
+    {% endif %}
+    {% if slides.Slide3 %}
+            <img src="data:image/jpeg;base64,{{ slides.Slide3.image }}" alt="Slide3" class="carousel-image active">
+    {% else %}
+                <p>No Slide3 picture available</p>
+      {% endif %}
+    {% if slides.Slide4 %}
+            <img src="data:image/jpeg;base64,{{ slides.Slide4.image }}" alt="Slide4" class="carousel-image active">
+    {% else %}
+                <p>No Slide4 picture available</p>
+    {% endif %}
+      <button id="prev">&lt;</button>
+      <button id="next">&gt;</button>
+      
+  </div>
+</div>
+
+<section class="count" id="about">
+  <div class="count-container">
+    <div class="container">
+      <i class="fas fa-graduation-cap"></i>
+      <div class="content">
+        <h3> 20+ </h3>
+        <p> program </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <i class="fas fa-user-graduate"></i>
+      <div class="content">
+        <h3> 1900+ </h3>
+        <p> students </p>
+      </div>
+    </div>  
+
+    <div class="container">
+      <i class="fas fa-chalkboard-user"></i>
+      <div class="content">
+        <h3> 50+ </h3>
+        <p> Teachers </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <i class="fas fa-face-smile"></i>
+      <div class="content">
+        <h3> 95% </h3>
+        <p> Satisfaction </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--ABOUT-->
+<section class="about" id="about">
+  <div class="row">
+    <div class="image">
+      {% for about in abouts %}
+    <img src="{{ url_for('static', filename='pictures/about1.jpg') }}" alt="SSCRdC">
+    {% endfor %}
+  </div>
+
+  <div class="description">
+    <h3>San Sebastian College - Recoletos de Cavite</h3>
+    <p>The Augustinian Recollects, driven by the "Spirit of Reform" in Christianity, emerged in the late 16th century with a focus on strict adherence to the Rule of St. Augustine. Initially, they pursued a contemplative life but later engaged in missionary work, particularly in the Philippines. In 1606, they established missions across the Philippine archipelago, including in Cavite, where they built a church and convent. Over time, they expanded their educational efforts, founding San Sebastian Junior College in 1966. Facing competition, they diversified their offerings, including Computer Science and admitting female students. Despite challenges from larger universities, they expanded their course offerings and infrastructure. The institution gained accreditation for various programs and supported the Enhanced Basic Education Act of 2013, offering Senior High School programs. They aim to maintain quality education while adapting to changing educational landscapes.</p>
+  </div>
+</div>
+</section>
+
+<!--COURSES-->
+<section class="courses" id="courses">
+  <h1 class="h1">Offered <span> courses</span></h1>
+  <div class="swiper course-slider">
+
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide slide">
+        {% if courses.GradeSchool %}
+            <img src="data:image/jpeg;base64,{{ courses.GradeSchool.image }}" alt="Grade School">
+        {% else %}
+            <p>No Grade School picture available</p>
+        {% endif %}
+
+        <h3>Grade School</h3>
+        <p><b>Objective(s)</b><br><br>
+          To uphold the Catholic teachings with special emphasis on the lives of Christ and Mary in developing the spiritual life of pupils.
+          <br><br>
+          To teach the pupils the basic learning skills in Reading, Writing and Mathematics and to prepare them academically for future learning.
+          <br><br>
+          To develop the attitudes, values and ideals of the pupils for them to become worthy members of society.
+          <br><br>
+          To provide the parents, faculty members and pupils with activities and opportunities that will foster their socio-cultural, civic and nationalistic involvement and concerns in a democratic society.
+          <br><br>
+          To develop the physical aspect of the pupils and to instill in them the importance of maintaining a sound mind and a healthy body.</p>
+      </div>
+
+      <div class="swiper-slide">
+        {% if courses.JuniorHighSchool %}
+            <img src="data:image/jpeg;base64,{{ courses.JuniorHighSchool.image }}" alt="JuniorHighSchool">
+        {% else %}
+            <p>No Junior High School picture available</p>
+        {% endif %}
+        <h3>Junior High School</h3>
+        <p><b>Objective(s)</b><br><br>
+          To instill knowledge, attitudes, and habits that will contribute to making the student a man of his time: Filipino Asian, enlightened and articulate, conscious of the dimensions and needs of a developing country’s aspirations for social justice, equality, fair share in economic welfare and self-determination.
+          <br><br>
+          To provide the youth with the opportunity to pursue the line of endeavor best suited to their capabilities and goals by offering various programs and fields of specialization.
+          <br><br>
+          To strive to make the student an educated Christian committed to God in the service of his fellowmen.
+          <br><br>
+          To produce spiritually developed and morally sensible men who see God as the fountainhead of all moral obligations and whose hierarchy of values is consistent with Christian principles of life.
+          </div>
+
+      <div class="swiper-slide">
+        {% if courses.ABM %}
+            <img src="data:image/jpeg;base64,{{ courses.ABM.image }}" alt="ABM">
+        {% else %}
+            <p>No ABM picture available</p>
+        {% endif %}
+        <h3>Senior High School<br>Accountancy, Business and Management (ABM)</h3>
+        <p><b>College cource(s) path</b><br><br>
+         
+          BS in Accountancy<br><br>
+          BSBA major in<br>
+           Management Accounting<br>
+           Financial Management<br>
+           Human Resource Development Management<br>
+           Marketing Management<br><br>
+          
+          BSHM major in<br>
+           Hotel & Restaurant Management<br>
+           Tourism</p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.HUMSS %}
+            <img src="data:image/jpeg;base64,{{ courses.HUMSS.image }}" alt="HUMSS">
+        {% else %}
+            <p>No HUMSS picture available</p>
+        {% endif %}
+        <h3>Senior High School<br>Humanities and Social Sciences (HUMSS)</h3>
+        <p><b>College cource(s) path</b><br><br>
+                     BS in Criminology<br><br>
+                     AB Communications</p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.STEM %}
+            <img src="data:image/jpeg;base64,{{ courses.STEM.image }}" alt="STEM">
+        {% else %}
+            <p>No HUMSS picture available</p>
+        {% endif %}
+        <h3>Senior High School<br>Science, Technology, Engineering and Mathematics (STEM)</h3>
+        <p><b>College cource(s) path</b><br><br>
+          BS in Electronics Engineering<br><br>
+          BS in Computer Engineering<br><br>
+          BS in Industrial Engineering<br><br>
+          BS in Computer Science<br><br>
+          BS in Information Technology<br><br>
+          BS in Information Systems<br><br>
+          BS in Nursing<br><br>
+          BS in Psychology</p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSHM %}
+            <img src="data:image/jpeg;base64,{{ courses.BSHM.image }}" alt="BSHM">
+        {% else %}
+            <p>No HUMSS picture available</p>
+        {% endif %}
+        <h3>BS Hospitality Management</h3>
+        <p>Equip the students with the basic and core competencies in the field of hospitality management with specialization in the area of hotel and restaurant management to prepare them for a career in the operation of the accommodation and food and beverage enterprises.<br><br>
+          Develop the students’ knowledge and skills related to the ideas, principles, concepts, basic research methods and problem-solving techniques to prepare them for employment to the hospitality industry sector. Develop the students’ entrepreneurial abilities in order to give them opportunities for self-employment.</p>
+          <p class="p1"><br><b>Career Opportunities<br>
+            Food Chain Manager, Restaurant Manager, Bar and Beverage Manager, 
+            Banquet Manager, Catering Manager, Front Office Assistant, Front Office Manager, 
+            Housekeeping Manager, Management Positions in Corporate Centers, Resort Complexes, Sports Club, and Cruise Liners</b></p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSTM %}
+            <img src="data:image/jpeg;base64,{{ courses.BSTM.image }}" alt="BSTM">
+        {% else %}
+            <p>No BSTM picture available</p>
+        {% endif %}
+        <h3>BS Tourisim Management</h3>
+        <p>Equip the students with the basic and core competencies in the field of hospitality management with specialization in the area of tourism to prepare them for entry level careers in private companies, such as, travel agencies, hotels, resorts or other lodging accommodations and restaurants or in the government offices related to tourism.<br><br>
+          Develop the students’ knowledge and skills related to the ideas, principles, concepts, basic research methods and problem-solving techniques to prepare them for employment to the hospitality industry sector.</p>
+          <p class="p1"><br><b>Career Opportunities<br>
+            Airline Companies, Cruise Liners, Hotels and Resorts, Travel Agencies, Tour Operators, Tourist Boards
+            </b></p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSFM %}
+            <img src="data:image/jpeg;base64,{{ courses.BSFM.image }}" alt="BSFM">
+        {% else %}
+            <p>No BSFM picture available</p>
+        {% endif %}
+        <h3>BSBA Financial Management</h3>
+        <p>Students are equipped with the core competencies of professionals in the field of finance and financial management to prepare them for a career in the financial department of general businesses, investment banking firms, broker-dealer firms, management consulting firms, various departments of commercial banks and other financial institutions, central banks and international financial institutions or in the teaching profession.</p>
+        <p class="p1"><br><b>Career Opportunities<br>
+
+        Financial Department of General Business, Investment Banking Firms, 
+        Broker-Dealer Firms, Management Consulting Firms, Commercial Banks, 
+        Financial Institutions, Central Banks, International Financial Institutions</b>
+      </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSBAMM %}
+            <img src="data:image/jpeg;base64,{{ courses.BSBAMM.image }}" alt="BSBAMM">
+        {% else %}
+            <p>No BSBAMM picture available</p>
+        {% endif %}
+        <h3>BSBA Marketing Mangement</h3>
+        <p>Equip the students with the core competencies of professionals in marketing for them to be responsive to the demands of their profession and the rapidly changing business environment.<br><br>
+          Develop the students’ entrepreneurial abilities in order to give them opportunities for self-employment and enhance the students’ proficiency in the local and international marketing arena by developing a curriculum that is congruent to those prescribed by CHED and the professional marketing certification institutions and associations.</p>
+          <p class="p1"><br><b>Career Opportunities<br>
+
+          Advertising Specialist, Public Relations Specialist, Market Researcher, 
+          Internet Marketing Specialist, Promotions Manager, Product Manager, Brand Manager, 
+          Marketing Consultant, Sales Manager, Marketing Representative, 
+          Communications Officer, Telecommunication Marketer </b></p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSCOMM %}
+            <img src="data:image/jpeg;base64,{{ courses.BSCOMM.image }}" alt="BSCOMM">
+        {% else %}
+            <p>No BSCOMM picture available</p>
+        {% endif %}
+        <h3>BS Communication</h3>
+        <p>San Sebastian College Recoletos de Cavite's Communication Program aims to nurture proactive, ethical, and skilled professionals with a creative mindset, adaptable to evolving communication technologies. <br><br>
+           Students develop research, writing, planning, and production skills, along with effective verbal communication in English and Filipino. Grounded in communication theories, they are prepared for further academic pursuits and possess a solid foundation for professional advancement.</p>
+           <p class="p1"><br><b>Career Opportunities <br>
+
+            Public and Corporate Communication Officer, 
+            Communication Researchers, 
+            Communication/Media Planners, 
+            Information Campaign Managers, 
+            Learning System Designers,
+            Multimedia Designers, 
+            TV/Film Director, 
+            Scriptwriter, 
+            Field Reporter, 
+            Newscaster, 
+            Program Host</p></b>
+      </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSABSMA %}
+            <img src="data:image/jpeg;base64,{{ courses.BSABSMA.image }}" alt="BSABSMA">
+        {% else %}
+            <p>No BSABSMA picture available</p>
+        {% endif %}
+        <h3>BS Accountancy<br>BS Marketing Aaccounting</h3>
+        <p>Accountancy students are prepared to excel as professional accountants in various sectors, including public, private, and government organizations, by developing essential knowledge, skills, and values. Their knowledge encompasses accounting, finance, information technology, business organization, global cultures, and international business practices.  <br><br> 
+          They acquire skills such as analytical thinking, problem-solving, critical analysis, interpersonal communication, and quantitative reasoning.
+          Moreover, they cultivate values rooted in professional ethics and moral integrity, ensuring they uphold ethical standards in their practice.</p>
+        <p class="p1"><br><b>Career Opportunities<br>
+
+        Financial Accountant, Cost Accountant, Internal Auditor, Financial Analyst, Bookkeeper
+        </b></p>
+      </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSPSYCH %}
+            <img src="data:image/jpeg;base64,{{ courses.BSPSYCH.image }}" alt="BSCOMM">
+        {% else %}
+            <p>No BSPSYCH picture available</p>
+        {% endif %}
+        <h3>BS Psychology</h3>
+        <p>Students in the psychology program gain a deep understanding of human behavior and mental processes, learning effective strategies for self-management and improvement. They learn to apply psychological knowledge in various occupational settings, preparing them for the workforce or further education. <br><br>
+          Additionally, they acquire lifelong skills such as critical thinking, ethical decision-making, and reflection on moral and spiritual values, essential for success in both personal and professional realms.</p>
+        <p class="p1"><br><b>Career Opportunities<br>
+
+        Teacher, Researcher, Human Resource Staff, Psychiatric Technicians, 
+        Career Counselors, Probation and Parole Officers, Child Care Workers, Social Service Specialist</p></b>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSIEBSECE %}
+            <img src="data:image/jpeg;base64,{{ courses.BSIEBSECE.image }}" alt="BSIEBSECE">
+        {% else %}
+            <p>No BSIEBSECE picture available</p>
+        {% endif %}
+        <h3>BS Industrial Engineering<br>BS Electronics Engineering</h3>
+        <p>Bachelor of Science in Industrial Engineering<br>
+          Practices diverse paths in a variety of industries, practicing engineer in fields such as design, research, development, testing, manufacturing, operations and service systems.</p>
+          <p><br><br>Bachelor of Science in Electronics Engineering<br>
+          The BSECE degree program is a five-year course that aims to produce electronics engineers who integrates emerging technologies with his knowledge of math & sciences to design conceptualize, and implement new, to innovative electronic, computer & communication systems, devices and processes.
+          <br>Students will be provided with a well-round engineering education through the integration of science and technology enriched with Christian principles and values.<br></p>
+        </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSCPE %}
+            <img src="data:image/jpeg;base64,{{ courses.BSCPE.image }}" alt="BSCPE">
+        {% else %}
+            <p>No BSCPE picture available</p>
+        {% endif %}
+        <h3>BS Computer Engineering</h3>
+        <p>Combines the theoretical Foundations of computing with the practical engineering knowledge into a broad, updated and integrated curriculum equipped with updated technology vital to industry, community and academe.
+          <br><br>
+          Students obtain practical design experience in one of several areas of concentration field of computer engineering by providing them with balanced required courses and technical electives in the different stages of  learning</p>
+      </div>
+
+      <div class="swiper-slide">
+        {% if courses.BSIT %}
+            <img src="data:image/jpeg;base64,{{ courses.BSIT.image }}" alt="BSIT">
+        {% else %}
+            <p>No BSIT picture available</p>
+        {% endif %}
+        <h3>BS Information Technology</h3>
+        <p>Provide students a background in modern computing systems and the theoretical aspects and applications of computer studies; Help students develop their problem-solving skills, especially those that require them to analyze, design and implement IT driven-solutions;
+<br><br>
+          Challenge students to consider the ethical and social impacts of technology, enabling them to take responsible action with Christian values and prepare students for continued learning in a rapidly changing environment and disciplines.</p>
+          <p class="p1"><br><b>Career Opportunities<br>
+
+          Application Developer, Database Administrator, Entrepreneur in IT Industry, 
+          Information Security Administrator, Information Technology Instructor, 
+          Network Administrator, Network Engineer, Systems Analyst, Technical Support Specialist, 
+          Test Engineer, Web Administrator, Web Developer </b></p>
+        </div>
+        <div class="swiper-slide">
+          {% if courses.BSCRIM %}
+            <img src="data:image/jpeg;base64,{{ courses.BSCRIM.image }}" alt="BSCRIM">
+        {% else %}
+            <p>No BSCRIM picture available</p>
+        {% endif %}
+          <h3>BS Criminology</h3>
+          <p>The BS Criminology program aims to:
+            <br><br>
+  Foster the values of leadership, integrity, accountability and responsibility while serving their fellowmen, community and country;
+  <br><br>Prepare the students for careers in crime prevention, law enforcement, scientific crime detection and correctional administration;  <br><br>
+  Encourage research and inquiry on the nature, causes treatment or punishment of criminal behavior.</p>
+            <p class="p1"><br><b>Career Opportunities<br>
+              Police Officer, Fire Officer, Chief Warden/Jail Officer, Private Detective, NBI Agent, Chief Security Officer, Intelligence Officer</b></p>
+          </div>
+          <div class="swiper-slide">
+            {% if courses.BSN %}
+            <img src="data:image/jpeg;base64,{{ courses.BSN.image }}" alt="BSN">
+            {% else %}
+                <p>No BSN picture available</p>
+            {% endif %}
+            <h3>BS Nursing</h3>
+            <p>The Nursing Program aims to provide students quality Christian Education and assists them to develop their potentials to the maximum through:
+              <br><br>
+              A. Sensitive awareness of the health needs of the society and strong commitment to the alleviation of problems arising there from;
+              <br><br>
+              B. Acquisition of skills, knowledge and attitudes towards promotion of health and of suffering based on Christian values using the nursing process;
+              <br><br>              
+              C. Exposure to various social, economic, cultural and aesthetic activities through related learning experiences in the hospital and community; and
+              <br><br>
+              D. Conducting research studies for the improvement of Nursing Care Nursing Education.</p>
+            </div>        
+
+    </div>
+    
+    <div class="swiper-pagination"></div>
+
+  </div>
+
+</section>
+<!--ADMINISTRATION-->
+<section class="administration" id="administration"></section>
+<h1 class="hh">SSCRdC <span>Organizational Chart</span></h1>
+<img class="image" src="{{ url_for('static', filename='pictures/chart.jpg') }}" alt="chart">
+
+<!--DEVELOPER-->
+<section class="developer" id="developer">
+    <h1>Developers</h1>
+    <div class="card_container">
+    <div class="profile">
+      <div class="round"></div>
+      <div class="box">
+      <img src="{{ url_for('static', filename='pictures/img1.jpg') }}" alt="Brillantes">
+      </div>
+      <div class="content">
+        <h3>Kyle Eran Brillantes</h3>
+        <p class="post">UI/UX Designer & Hardware Developer</p>
+          <p class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, at quos dolorum sit dicta vel non debitis ad vitae, repudiandae eos enim ex quam doloremque, ipsa id beatae delectus! Nobis.</p>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="round"></div>
+      <div class="box">
+      <img src="{{ url_for('static', filename='pictures/img2.jpg') }}" alt="Gaylon">
+      </div>
+      <div class="content">
+        <h3>Rafael Gaylon</h3>
+        <p class="post">Hardware Developer</p>
+          <p class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, at quos dolorum sit dicta vel non debitis ad vitae, repudiandae eos enim ex quam doloremque, ipsa id beatae delectus! Nobis.</p>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="round"></div>
+      <div class="box">
+      <img src="{{ url_for('static', filename='pictures/img3.jpg') }}" alt="Jaguit">
+      </div>
+      <div class="content">
+        <h3>Angelyn Rose Jaguit</h3>
+        <p class="post">Hardware Developer</p>
+          <p class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, at quos dolorum sit dicta vel non debitis ad vitae, repudiandae eos enim ex quam doloremque, ipsa id beatae delectus! Nobis.</p>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="round"></div>
+      <div class="box">
+      <img src="{{ url_for('static', filename='pictures/img4.jpg') }}" alt="Jurado">
+      </div>
+      <div class="content">
+        <h3>Van Dan Jurado</h3>
+        <p class="post">Full-stack & Hardware Developer</p>
+          <p class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, at quos dolorum sit dicta vel non debitis ad vitae, repudiandae eos enim ex quam doloremque, ipsa id beatae delectus! Nobis.</p>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="round"></div>
+      <div class="box">
+      <img src="{{ url_for('static', filename='pictures/img5.jpg') }}" alt="Luig">
+      </div>
+      <div class="content">
+        <h3>Sarah Mae Luig</h3>
+        <p class="post">UI/UX Designer & Hardware Developer</p>
+        <p class="about">Bachelor of Science in Computer Engineering (SSCRdC) <br>'Disney Princess lang sa grupo'</p>
+      </div>
+    </div></div>
+  
+</section>
+</section>
+<!-- SWIPER JS LINK -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- JS LINKS -->
+    <script src="{{ url_for('static', filename='dist/SEBASTYSCRIPT.JS') }}"></script>
+            href="{{ url_for('static', filename='dist/SEBASTYCSS.css') }}"
+<script>
+  // Set the time limit for inactivity (in milliseconds)
+const inactivityTimeLimit = 30000; // 30 seconds
+
+let inactivityTimer;
+
+// Function to reset the inactivity timer
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(redirectToAnotherPage, inactivityTimeLimit);
+}
+
+// Function to redirect to another HTML page
+function redirectToAnotherPage() {
+    window.location.href = "anotherPage.html";
+}
+
+// Event listeners to reset the inactivity timer on user interaction
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keypress", resetInactivityTimer);
+
+// Start the inactivity timer when the page loads
+resetInactivityTimer();
+
+</script>
+  
+          </body>
+
+
+  
+</html>

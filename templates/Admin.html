@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+      :root {
+        --red: #8a0000;
+        --lred: #8a0000b0;
+        --black: #000000;
+        --brown: #ded7c4;
+        --white: #ffffff;
+        --cream: #ede9df;
+        --bgcolor: #00000066;
+        --yellow: #ffbd13;
+      }
+      body {
+        margin: 0;
+        background-color: var(--brown);
+        overflow: hidden;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .hamburger-panel {
+        width: 0;
+        height: 100%;
+        background-color: var(--lred);
+        overflow-x: hidden;
+        transition: 0.5s;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1;
+      }
+
+      .hamburger-panel a {
+        padding: 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #ffffff;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .hamburger-icon {
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--red);
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      @media screen and (max-width: 600px) {
+        .hamburger-panel a {
+          font-size: 24px;
+        }
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: bolder;
+        font-size: xx-large;
+        margin-top: 20px;
+      }
+
+      #controls h1 {
+        text-align: center;
+        font-weight: bolder;
+        font-size: xx-large;
+        padding: 40px;
+      }
+
+      p {
+        font-size: x-large;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #000000;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--cream);
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      td {
+        background-color: white;
+      }
+
+      .delete-button {
+        background-color: var(--red);
+        border: none;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+      }
+
+      .delete-button:hover {
+        background-color: #cc4637;
+      }
+
+      button {
+        background-color: #cc4637;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        margin-top: 20px;
+        padding: 8px 20px;
+        font-size: 18px;
+      }
+
+      button:hover {
+        background-color: var(--lred);
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--red);
+        font-weight: bold;
+      }
+
+      #video-stream {
+        margin-top: 20px;
+      }
+
+      #stop {
+        background-color: #ff0000;
+        color: #fff;
+      }
+
+      section {
+        height: 100vh;
+      }
+
+      .table-container {
+        max-height: 200px; /* Adjust height as needed */
+        overflow-y: auto;
+      }
+
+      .ftable,
+      .Stable,
+      .table-container,
+      .fqa,
+      .fqadisplay,
+      .senitback {
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .table-container {
+        max-height: 300px; /* Adjust height as needed */
+        overflow-y: scroll;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* Ensure table layout remains consistent */
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #000000;
+        text-align: left;
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+
+      th {
+        background-color: var(--cream);
+        position: sticky;
+        top: 0;
+        z-index: 1; /* Ensure it's above other content */
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      td {
+        background-color: white;
+      }
+
+      #update {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--cream);
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .form-container {
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      select,
+      input[type="file"],
+      button[type="submit"] {
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid var(--black);
+        border-radius: 4px;
+        background-color: var(--white);
+      }
+
+      #update button[type="submit"] {
+        background-color: var(--red);
+        color: var(--white);
+        border: none;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: var(--lred);
+      }
+
+      #controls {
+        text-align: center;
+      }
+
+      #video-stream {
+        margin-bottom: 20px;
+      }
+
+      .control-form {
+        display: inline-block;
+      }
+
+      .control-form button {
+        padding: 15px 20px;
+        font-size: 24px;
+        margin: 5px;
+        border: none;
+        background-color: #8a0000;
+        color: white;
+        cursor: pointer;
+      }
+
+      #stop {
+        background-color: #cc4637;
+      }
+
+      .control-form button:hover {
+        background-color: #8a0000b0;
+      }
+
+      .form-container1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--cream);
+        border-radius: 10px;
+        height: 800px; /* Set a fixed height */
+        overflow-y: auto;
+      }
+
+      .question-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .question-item {
+        width: 400px;
+        margin-bottom: 20px;
+      }
+
+      .question-item label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .question-item textarea {
+        width: 400px;
+        padding: 8px;
+        border: 1px solid var(--black);
+        border-radius: 4px;
+      }
+
+      .submit-btn {
+        width: 400px;
+        margin-top: 20px;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--red);
+        color: var(--white);
+        cursor: pointer;
+        text-align: center; /* Center text within the button */
+      }
+
+      .submit-btn:hover {
+        background-color: var(--lred);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="" id="results">
+      <div class="container">
+        <div class="main-content">
+          <!-- Display total average rate -->
+          <h1>School Rating</h1>
+          <div class="Stable">
+            <table border="1">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Total Voters</th>
+                  <th>Total Expected Stars</th>
+                  <th>Total Earned Stars</th>
+                  <th>Average Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in overall_srating %}
+                <tr>
+                  <td>San Sebastian Rate</td>
+                  <td>{{ row.Stotal_voter }}</td>
+                  <td>{{ row.Sexpected_total_stars }}</td>
+                  <td>{{ row.Stotal_earned_stars }}</td>
+                  <td>
+                    <!-- {{ (row.Stotal_earned_stars / row.Sexpected_total_stars*100)|round(2) }}% -->
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- Display total rate per target department -->
+          <h1>Average Ratings per Target Department</h1>
+          <div class="ftable">
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Target Department</th>
+                  <th>Total Voters</th>
+                  <th>Total Expected Stars</th>
+                  <th>Total Earned Stars</th>
+                  <th>Average Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in average_ratings %}
+                <tr>
+                  <td>{{ row.Target_Department }}</td>
+                  <td>{{ row.total_voter }}</td>
+                  <td>{{ row.expected_total_stars }}</td>
+                  <td>{{ row.total_earned_stars }}</td>
+                  <td>
+                    <!-- {{ (row.total_earned_stars / row.expected_total_stars * 100)|round(2) }}% -->
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Existing survey data table -->
+          <h2>Survey Data</h2>
+          <div class="table-container">
+            <table id="survey-table" border="1">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>There Department</th>
+                  <th>There Target Department</th>
+                  <th>Rating</th>
+                  <th>Suggestion</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for survey in surveys %}
+                <tr>
+                  <td>{{ survey.id }}</td>
+                  <td>{{ survey.name }}</td>
+                  <td>{{ survey.There_Department }}</td>
+                  <td>{{ survey.There_TDepartment }}</td>
+                  <td>{{ survey.rating }}</td>
+                  <td>{{ survey.suggestion }}</td>
+                  <td><a href="/delete/{{ survey.id }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Delete All button -->
+          <form
+            action="/delete_all"
+            method="post"
+            onsubmit="return confirm('Are you sure you want to delete all entries for this department?');"
+          >
+            <button type="submit">Delete All</button>
+          </form>
+          <form action="/send_email" method="post">
+            <button type="submit">Send to Email</button>
+        </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="" id="update">
+
+    <form action="/announce" method="post">
+        <label for="announcement">Announcement:</label><br>
+        <textarea id="announcement" name="announcement" rows="4" cols="50">{{ announcement_text }}</textarea><br>
+        <Button type="submit" value="Save">UPDATE</Button>
+    </form>
+
+      <h1>Advertisement Slider</h1>
+      <div class="form-container">
+        <form
+          action="/upload_slider"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <select name="Slide_name" id="" required>
+            <option value="Slide1">Slide 1</option>
+            <option value="Slide2">Slide 2</option>
+            <option value="Slide3">Slide 3</option>
+            <option value="Slide4">Slide 4</option>
+            <option value="Slide5">Slide 5</option>
+            <option value="Slide6">Slide 6</option>
+            <option value="Slide7">Slide 7</option>
+          </select>
+          <input type="file" name="image" id="" required />
+          <button type="submit">UPDATE</button>
+        </form>
+      </div>
+
+
+      <h1>Courses Images</h1>
+      <div class="form-container">
+        <form
+          action="/upload_Course"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <select name="Course_name" id="" required>
+            <option value="GradeSchool">GradeSchool</option>
+            <option value="JuniorHighSchool">JuniorHighSchool</option>
+            <option value="ABM">ABM</option>
+            <option value="HUMSS">HUMSS</option>
+            <option value="STEM">STEM</option>
+            <option value="BSHM">BSHM</option>
+            <option value="BSTM">BSTM</option>
+            <option value="BSFM">BSFM</option>
+            <option value="BSBAMM">BSBAMM</option>
+            <option value="BSCOMM">BSCOMM</option>
+            <option value="BSABSMA">BSA & BSMA</option>
+            <option value="BSPSYCH">BSPSYCH</option>
+            <option value="BSIEBSECE">BSIE & BSECE</option>
+            <option value="BSCPE">BSCPE</option>
+            <option value="BSIT">BSIT</option>
+            <option value="BSCRIM">BSCRIM</option>
+            <option value="BSN">BSN</option>
+          </select>
+          <input type="file" name="Course_image" id="" required />
+          <button type="submit">UPDATE</button>
+        </form>
+      </div>
+
+      <h1>Administration Images</h1>
+      <div class="form-container">
+        <form
+          action="/upload_Administration"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <select name="Administration_name" id="" required>
+            <option value="Administration">Administration</option>
+          </select>
+          <input type="file" name="image" id="" required />
+          <button type="submit">UPDATE</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="container" id="controls">
+      <h1>Robot Control</h1>
+      <div id="video-stream">
+        <h2>Camera Streaming</h2>
+        <img
+          src="{{ camera_feed_url }}"
+          alt="Camera Feed"
+          width="640"
+          height="480"
+        />
+      </div>
+      <div class="control-buttons">
+        <form action="/control" method="post" class="control-form">
+          <button type="submit" name="direction" value="forward">↑</button>
+        </form>
+        <form action="/control" method="post" class="control-form">
+          <button type="submit" name="direction" value="left">←</button>
+          <button id="stop" type="submit" name="direction" value="stop">
+            Stop
+          </button>
+          <button type="submit" name="direction" value="right">→</button>
+        </form>
+        <form action="/control" method="post" class="control-form">
+          <button type="submit" name="direction" value="backward">↓</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="question" id="questions">
+      <div class="form-container1">
+        <h2>Answer Asked Questions</h2>
+        <form action="/answer" method="post">
+          <div class="question-container">
+            {% for question in unknown_questions %}
+            <div class="question-item">
+              <label for="answer{{ loop.index }}"
+                >Question: {{ question }}</label
+              >
+              <textarea
+                id="answer{{ loop.index }}"
+                name="answer_{{ loop.index }}"
+                placeholder="Enter your answer here..."
+              ></textarea>
+              <input
+                type="hidden"
+                name="original_question_{{ loop.index }}"
+                value="{{ question }}"
+              />
+            </div>
+            {% endfor %}
+          </div>
+          <input
+            type="hidden"
+            name="num_questions"
+            value="{{ unknown_questions|length }}"
+          />
+          <input type="submit" value="Submit Answers" class="submit-btn" />
+        </form>
+      </div>
+    </section>
+
+    <section id="fqa">
+      <h1>Top QAs</h1>
+      <div style="max-height: 200px; margin: 90px;" class="fqa">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Call Count</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for qa in top_qas %}
+                <tr>
+                    <td>{{ qa.question }}</td>
+                    <td style="padding: auto;">{{ qa.answer }}</td>
+                    <td>{{ qa.call_count }}</td>
+                    <td><a href="/delete1/{{ qa.id }}">Delete</a>
+                      <a href="/updatefqa/{{ qa.id }}">Send</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      <br>
+      <h1>Already display in FAQ</h1>
+      <div style="max-height: 200px; margin: 90px;"  class="fqadisplay">
+        <table>
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Answer</th>
+              <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            {% for question in top_questions %}
+            <tr>
+                <td>{{ question.question }}</td>
+                <td>{{ question.answer }}</td>
+                <td><a href="/senitback/{{ question.id }}">Delete</a>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+  </section>
+
+    <div class="hamburger-panel" id="hamburgerPanel">
+      <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">×</a>
+      <a href="#results">Results</a>
+      <a href="#update">Update</a>
+      <a href="#controls">Control</a>
+      <a href="#questions">Questions</a>
+      <a href="#fqa">Top FQA</a>
+      <a onclick="refreshPage()">Refresh Page</a>
+      <a href="{{ url_for('logout') }}" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="hamburger-icon" onclick="openNav()">☰</div>
+    <script>
+      function openNav() {
+        document.getElementById("hamburgerPanel").style.width = "250px";
+      }
+      function closeNav() {
+        document.getElementById("hamburgerPanel").style.width = "0";
+      }
+      function logout() {
+        // Add logout logic here
+        alert("Logout successful!");
+        // Redirect to the login page or perform any other necessary actions
+      }
+    </script>
+    
+    <script>
+      function refreshPage() {
+        location.reload(); // Reload the page
+      }
+    </script>
+
+    <script>
+      // Function to capture scroll position before page reload
+      function captureScrollPosition() {
+        // Store the current scroll position in session storage
+        sessionStorage.setItem("scrollPosition", window.scrollY);
+      }
+
+      // Function to set scroll position after page reload
+      function setScrollPosition() {
+        // Get the stored scroll position
+        const scrollPosition = sessionStorage.getItem("scrollPosition");
+        // If a scroll position is stored, set it
+        if (scrollPosition) {
+          window.scrollTo(0, scrollPosition);
+          // Remove the stored scroll position to prevent reusing it
+          sessionStorage.removeItem("scrollPosition");
+        }
+      }
+
+      // Add event listener to capture scroll position before page reload
+      window.addEventListener("beforeunload", captureScrollPosition);
+
+      // After the page reloads, set the scroll position
+      window.addEventListener("load", setScrollPosition);
+    </script>
+  </body>
+</html>

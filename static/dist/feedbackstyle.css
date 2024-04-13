@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+:root {
+  --red: #8a0000;
+  --darker-red: #7a0000;
+  --lred: #8a0000b0;
+  --black: #000000;
+  --brown: #ded7c4;
+  --white: #ffffff;
+  --cream: #ede9df;
+  --darker-cream: #c0baab;
+  --bgcolor: #00000066;
+  --shadow: 8px 8px 30px #8f8977;
+  --yellow: #ffbd13;
+}
+* {
+  /* border: 2px solid #000000;  */
+}
+body {
+  background-color: var(--cream);
+  font-family: "Poppins";
+}
+
+/* Feedback Section */
+.feedback.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+/*  */
+.fieldset.wrapper {
+  position: absolute;
+  top: 110px;
+}
+
+fieldset {
+  border: 7.5px solid var(--red);
+  padding: 0.7rem;
+  margin-left: 70px;
+  border-radius: 30px;
+  height: 516px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+fieldset legend {
+  font-size: x-large;
+}
+
+form .NameandDep {
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.name,
+.department,
+.targetdep p {
+  font-size: 19px;
+}
+
+.name,
+.department {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.name input {
+  border-radius: 30px;
+  padding: 11px;
+  margin: 13px;
+  background: var(--darker-cream);
+  width: 195px;
+}
+
+.name input {
+  font-size: 15px;
+  width: 260px;
+  border: none;
+  outline: none;
+  background-color: var(--darker-cream);
+}
+
+.department select {
+  font-size: 15px;
+  border-radius: 30px;
+  padding: 11px;
+  margin: 13px;
+  background: var(--darker-cream);
+  width: 300px;
+}
+
+.targetdep {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.targetdep select {
+  font-size: 15px;
+  border-radius: 30px;
+  padding: 12px;
+  background: var(--darker-cream);
+  width: 300px;
+}
+
+.containertargetdepartment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ratecontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.ratecontainer p {
+  font-size: 20px;
+  position: absolute;
+  top: 200px;
+}
+
+.rating2 {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.rating2 input {
+  display: none;
+}
+
+.rating2 label {
+  float: right;
+  cursor: pointer;
+  color: #e48282;
+  transition: color 0.3s;
+  /* margin: 0 6px 0 6px; */
+}
+
+.rating2 label:before {
+  content: "\2605";
+  font-size: 60px;
+}
+
+.rating2 input:checked ~ label,
+.rating2 label:hover,
+.rating2 label:hover ~ label {
+  color: #ecd713;
+  transition: color 0.3s;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 15px;
+  position: absolute;
+  top: 295px;
+  height: 120px;
+  width: 785px;
+  background: var(--white);
+  padding: 0.75rem;
+  border-radius: 0.37rem;
+}
+
+.btn-group2 {
+  height: 160px; /*ajdust moto pag bumaba yung next button */
+  width: auto;
+  display: flex;
+  grid-gap: 8px;
+  align-items: flex-end;
+}
+
+.btn-group2 .btn {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.btn-group2 .btn.submit2 {
+  background: var(--red);
+  color: var(--white);
+}
+
+.btn-group2 .btn.cancel2 {
+  background-color: var(--darker-cream);
+  color: var(--black);
+}
+
+.form1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.texts p {
+  color: black;
+  text-align: left;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.texts p.replay {
+  text-align: right;
+}

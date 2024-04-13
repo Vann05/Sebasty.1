@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    :root{
+    --red: #8a0000;
+    --lred: #8a0000b0;
+    --black: #000000;
+    --brown: #ded7c4;
+    --white: #ffffff;
+    --cream: #ede9df;
+    --bgcolor: #00000066;
+    --yellow: #ffbd13;}
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      padding: 0;
+      background-size: cover;
+      position: relative; /* Add position relative to allow absolute positioning of pseudo-element */
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ded7c480; /* Red with 50% opacity */
+      z-index: -1; /* Position behind the background image */
+      
+    }
+
+    form {
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border-style:solid;
+    }
+
+    button {
+      background-color: #8a0000;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bolder;
+    }
+
+    button:hover {
+      background-color: #8a0000b0;
+    }
+    
+    .adminclass {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-style:solid;
+    }
+
+    .bg-left {
+      background-size: cover;
+      height: 400px;
+      width: 400px; /* Adjust as needed */
+    }
+    .form-right {
+      height: 400px;
+      width: 400px; /* Adjust as needed */
+      background-color: white;
+    }
+
+
+
+</style>
+  <link href="{{ url_for('static', filename='dist/kioskboard-2.3.0.min.css') }}" rel="stylesheet">
+</head>
+<body style="background-image: url('static/pictures/about 2.jpg'); ">
+  <section class="adminclass" id="adminclass"> 
+    <div class="bg-left" style="background-image: url('static/pictures/BG2.png')"></div>
+    <div class="form-right"> <form action="/login" method="post">
+      <h2>Admin Page</h2>
+      {% if message %}
+      <p style="color: red;">{{ message }}</p>
+      {% endif %}
+      <label for="username">Username:</label>
+      <input 
+      class="js-kioskboard-input" 
+      data-kioskboard-type="keyboard" 
+      data-kioskboard-placement="bottom" 
+      data-kioskboard-specialcharacters="false" 
+      placeholder="Username" 
+      input type="text" 
+      id="username" 
+      name="username" 
+      required> 
+    </input> 
+    
+    <label for="password">Password:</label>
+    <input class="js-kioskboard-input" 
+    data-kioskboard-type="all" 
+    data-kioskboard-placement="bottom" 
+    data-kioskboard-specialcharacters="false" 
+    placeholder="Password" type="password" 
+    id="password" 
+    name="password" 
+    required>
+  </input> 
+
+  <button type="submit">Log In</button>
+</form> 
+</div> 
+</section>
+
+  <script src="{{ url_for('static', filename='dist/kioskboard-2.3.0.min.js') }}"></script>
+
+  <script>
+
+    var enkey = [
+    {
+      "0": "Q",
+      "1": "W",
+      "2": "E",
+      "3": "R",
+      "4": "T",
+      "5": "Y",
+      "6": "U",
+      "7": "I",
+      "8": "O",
+      "9": "P"
+    },
+    {
+      "0": "A",
+      "1": "S",
+      "2": "D",
+      "3": "F",
+      "4": "G",
+      "5": "H",
+      "6": "J",
+      "7": "K",
+      "8": "L"
+    },
+    {
+      "0": "Z",
+      "1": "X",
+      "2": "C",
+      "3": "V",
+      "4": "B",
+      "5": "N",
+      "6": "M"
+    }
+    ];
+    KioskBoard.run('.js-kioskboard-input', {
+      keysArrayOfObjects: enkey,
+      language: 'en',
+      autoScroll: false,
+      Capslock: true,
+      allowRealKeyboard: true,
+      allowMobileKeyboard: true,
+      cssAnimations: true,
+      cssAnimationsDuration: 260,
+
+      theme: 'dark',  
+      keysFontSize: '20px',
+      keysFontWeight: 'bold',
+      keysIconSize: '20px',
+
+      keysEnterText: 'Enter',
+    });
+</script>
+</body>
+</html>
